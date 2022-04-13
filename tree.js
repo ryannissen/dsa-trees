@@ -63,7 +63,25 @@ class Tree {
    * whose value is greater than lowerBound. */
 
   numGreater(lowerBound) {
+    let toVisitStack = [this.root];
+    let moreThanLower = 0;
 
+    if (toVisitStack[0] === null || toVisitStack[0].children.length === 0 ) return 0;
+
+    while (toVisitStack.length) {
+
+      let current = toVisitStack.pop();
+
+      if (current.val > lowerBound){
+        moreThanLower++;
+      }
+
+      for (let child of current.children) {
+        toVisitStack.push(child);
+      }
+
+    }
+    return moreThanLower;
   }
 }
 
